@@ -1,0 +1,13 @@
+/*{
+		"name": "负载均衡",
+		"icon": "fa-cloud-upload",
+		"route": "#",
+		"submenu": [
+			
+			{
+				"name": "负载节点",
+				"route": "cdr.list",
+				"action": "CdrController.List"
+			}
+		]
+	},*/

@@ -1,0 +1,60 @@
+
+		<div class="row">
+			<div class="col-xs-12">
+			<a href="{{urlfor "PlanController.TimePlanDetailAdd"  "node_id" .node_id "node_name" .node_name "time_plan_id" .time_plan_id "time_plan_name" .time_plan_name}}" class="btn btn-sm btn-default"><i class="fa fa-user"></i> 新建</a>
+			</div>
+		</div>
+
+		<div class="space-4"></div>
+
+		<div class="row">
+    
+     <div class="col-xs-12">
+         <tr>   <td class="space-4">节点名称：{{.node_name}} 工作时间: {{.time_plan_name}}明细 </td>   </tr>
+      </div>
+      {{$node_id := .node_id}}
+      {{$node_name := .node_name}}
+      {{$time_plan_id := .time_plan_id}}
+      {{$time_plan_name := .time_plan_name}}
+			<div class="col-xs-12">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>名称</th>
+						<th>是否日常时间</th>		 		
+						<th>工作日</th>
+            <th>上班日期</th>
+            <th>不上班日期</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            
+            <th>操作</th>
+					</tr>
+					</thead>
+					<tbody>   
+           		 
+			         		
+         {{range $k, $v := .list}}
+						<tr>
+							<td class="center">{{$v.Id}}</td>
+							<td>{{$v.TimeName}}</td>
+							<td>{{$v.IsUsualy}}</td>
+              <td>{{$v.WeekTime}}</td>
+              <td>{{$v.CustomDay}}</td>
+              <td>{{$v.DisableDays}}</td>
+              <td>{{$v.StartTime}}</td>
+              <td>{{$v.StopTime}}</td>
+							 
+              <td>
+  							<a href="{{urlfor "PlanController.TimePlanDetailUpdate" "id" $v.Id  "time_plan_id" $time_plan_id "time_plan_name" $time_plan_name "node_id" $node_id "node_name" $node_name}}">编辑</a> | 
+  							<a href="{{urlfor "PlanController.TimePlanDetailDelete" "id" $v.Id "time_plan_id" $time_plan_id "time_plan_name" $time_plan_name "node_id" $node_id "node_name" $node_name}}" class="delete_confirm" onclick="if(confirm('确定删除?')==false)return false;">删除</a> | 	 
+                
+              </td>
+						</tr>
+					{{end}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+       

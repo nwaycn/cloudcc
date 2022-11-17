@@ -1,0 +1,122 @@
+
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "DialplanController.Detail_add"}}">
+			{{$node_id := .node_id}}
+      {{$node_name := .node_name}}
+      {{$dialplan_id := .dialplan_id}}
+      {{$dialplan_name := .dialplan_name}}
+      <input type="hidden"  name="node_id" id="node_id" value="{{.node_id}}"/>
+      <input type="hidden"  name="node_name" id="node_name" value="{{.node_name}}"/>
+      <input type="hidden"  name="dialplan_id" id="dialplan_id" value="{{.dialplan_id}}"/>
+      <input type="hidden"  name="dialplan_name" id="dialplan_name" value="{{.dialplan_name}}"/>
+      
+      <div class="col-xs-12">
+         <tr>   <td class="space-4">节点名称：{{$node_name}} &emsp; 路由：{{$dialplan_name}}</td>   </tr>
+      </div>
+       
+			<div class="form-group">
+				<label for="Node_name" class="col-sm-2 control-label">序号</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Orderid" name="Orderid">
+				</div>
+         <span class="lbl">用于实际使用过程中的排序用</span>
+			</div>
+			
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">标记名称</label>
+				<div class="col-sm-3">
+					<input  required="required"  type="text" class="form-control" id="Dialplan_detail_tag" name="Dialplan_detail_tag" >
+				</div>
+			</div>
+      
+      
+      
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">明细数据</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="Dialplan_detail_data" name="Dialplan_detail_data" >
+				   <span class="lbl">当操作类型为playback时，则明细数据无用，采用语音列表下拉框中的语音路径</span>
+        </div>
+       
+			</div> 
+		  <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">语音文件</label>
+				<div class="col-sm-6">
+					<select name="Sound_file">
+						<option value="no">请选择</option>
+						{{range  $v := .ringlist}}
+						<option value="{{$v.Ring_fullpath}}">{{$v.Ring_name}}</option>
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline">要操作的类型，如set,playback,answer,bridge等</div>
+			</div>     
+      <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">操作类型</label>
+				<div class="col-sm-6">
+					<select name="Dialplan_detail_type_name">
+						<option value="no">请选择</option>
+						{{range  $v := .oplist}}
+						<option value="{{$v.Name}}">{{$v.Name}}</option>
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline">要操作的类型，如set,playback,answer,bridge等</div>
+			</div> 
+      
+      <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">出局网关</label>
+				<div class="col-sm-6">
+					<select name="Outline_gateway">
+						<option value="no">请选择</option>
+						{{range  $v := .gwlist}}
+						<option value="{{$v.Id}}">{{$v.Gateway_name}}</option>
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline">要出局的网关，作为bridge的参考用，请使用sofia/gateway/nway/$0等填充明细</div>
+			</div>     
+      <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">工作时间</label>
+				<div class="col-sm-6">
+					<select name="TimePlan">
+						<option value="0">请选择</option>
+						{{range  $v := .timeplanlist}}
+						<option value="{{$v.Id}}">{{$v.PlanName}}</option>
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline">仅在nwayacd等商业功能中有效，其余的set等能力不具备处理此业务能力等</div>
+			</div>
+      <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">区域选择</label>
+				<div class="col-sm-6">
+					<select name="TimePlan">
+						<option value="0">请选择</option>
+						{{range  $v := .areaplanlist}}
+						<option value="{{$v.Id}}">{{$v.PlanName}}</option>
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline">仅在nwayacd等商业功能中有效，其余的set等能力不具备处理此业务能力等</div>
+			</div>          
+			<div class="form-group">
+				<label for="send_mail" class="col-sm-2 control-label">呼出</label>
+				<div class="col-sm-5">
+					<input name="Is_callout" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" value="1">
+					<span class="lbl"></span>
+				</div>
+			</div>
+      <div class="form-group">
+				<label for="send_mail" class="col-sm-2 control-label">网关组等功能在此免费版中不可实现</label>
+				 
+			</div>
+	 
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "DialplanController.List" "dialplan_id" $dialplan_id "dialplan_name" $dialplan_name "node_id" $node_id "node_name" $node_name}}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

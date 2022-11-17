@@ -1,0 +1,57 @@
+
+		<div class="row">
+			<div class="col-xs-12">
+			<a href="{{urlfor "IvrController.Detail_add"  "node_id" .node_id "node_name" .node_name "ivr_id" .ivr_id "ivr_name" .ivr_name}}" class="btn btn-sm btn-default"><i class="fa fa-user"></i> 新建</a>
+			</div>
+		</div>
+
+		<div class="space-4"></div>
+
+		<div class="row">
+    
+     <div class="col-xs-12">
+         <tr>   <td class="space-4">节点名称：{{.node_name}} &emsp; IVR名称:{{.ivr_name}} </td>   </tr>
+      </div>
+      {{$node_id := .node_id}}
+      {{$node_name := .node_name}}
+      {{$ivr_id := .ivr_id}}
+      {{$ivr_name := .ivr_name}}
+      {{$ringlist := .ringlist}}
+			<div class="col-xs-12">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>按键</th>
+						<th>操作</th>
+						 
+            
+            <th>操作参数</th>
+            
+            
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>   
+           		 
+			         		
+          {{range $k, $v := .list}}
+						<tr>
+							<td class="center">{{$v.Id}}</td>
+							<td>{{$v.Ivr_menu_option_digits}}</td>
+							<td>{{$v.Ivr_menu_option_action}}</td>
+              <td>{{$v.Ivr_menu_option_param}}</td>
+              
+             
+              <td>
+  							<a href="{{urlfor "IvrController.Detail_update" "id" $v.Id "ivr_id" $ivr_id "ivr_name" $ivr_name "node_id" $node_id "node_name" $node_name}}">编辑</a> | 
+  							<a href="{{urlfor "IvrController.Detail_delete" "id" $v.Id "ivr_id" $ivr_id "ivr_name" $ivr_name "node_id" $node_id "node_name" $node_name}}" class="delete_confirm" onclick="if(confirm('确定删除?')==false)return false;">删除</a>   	 
+                 
+              </td>
+						</tr>
+					{{end}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+       

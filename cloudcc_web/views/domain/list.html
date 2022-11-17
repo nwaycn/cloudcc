@@ -1,0 +1,52 @@
+
+		<div class="row">
+			<div class="col-xs-12">
+			<a href="{{urlfor "DomainController.Add"}}" class="btn btn-sm btn-default"><i class="fa fa-user"></i> 新建</a>
+			</div>
+		</div>
+
+		<div class="space-4"></div>
+
+		<div class="row">
+    
+      
+     
+			<div class="col-xs-12">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th> 名称</th>
+						<th> 描述</th>
+						 
+            
+            <th>允许ip</th>
+             
+						 		
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>   
+           		 
+			         		
+      {{range $k, $v := .list}}
+						<tr>
+							<td class="center">{{$v.Id}}</td>
+							<td>{{$v.Domain_name}}</td>
+							<td>{{$v.Domain_desc}}</td>
+							 
+              <td>{{$v.Allow_ip}}</td>
+							 
+              <td>
+  							<a href="{{urlfor "DomainController.Update" "id" $v.Id "name" $v.Domain_name}}">编辑</a> | 
+  							<a href="{{urlfor "DomainController.Delete" "id" $v.Id "name" $v.Domain_name}}" class="delete_confirm" onclick="if(confirm('确定删除?')==false)return false;">删除</a> | 	 
+                <a href="{{urlfor "DomainController.Group_list" "domain_id" $v.Id "domain_name" $v.Domain_name}}">分机组</a> |
+                <a href="{{urlfor "DomainController.Ext_list" "domain_id" $v.Id "domain_name" $v.Domain_name}}">分机</a>
+              </td>
+						</tr>
+					{{end}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+       

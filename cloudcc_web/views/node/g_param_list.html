@@ -1,0 +1,49 @@
+<div class="row">
+			<div class="col-xs-12">
+			   <a href="{{urlfor "NodeController.G_add"  "node_name" .node_name "node_id" .node_id}}" class="btn btn-sm btn-default"><i class="fa fa-user"></i> 新建</a>
+			   &emsp; <a href="{{urlfor "NodeController.G_Push_conf"  "node_name" .node_name "node_id" .node_id}}" class="btn btn-sm btn-default"><i class="fa fa-user"></i>下发</a>
+      </div>
+       
+		</div>
+
+		<div class="space-4"> </div>
+
+		<div class="row">
+       <div class="col-xs-12">
+         <tr> <td class="space-4"> id: {{.node_id}}</td> <td class="space-4">名称：{{.node_name}} </td> <td class="space-4">全局参数</td> </tr>
+      </div>
+      {{$node_id := .node_id}}
+      {{$node_name := .node_name}}
+			<div class="col-xs-12">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>Key值</th>
+						<th>Value值</th>
+						<th>说明</th>
+						 
+					</tr>
+					</thead>
+					<tbody>
+					 
+					{{range $k, $v := .list}}
+						<tr>
+							<td class="center">{{$v.Id}}</td>
+							<td>{{$v.NodeKey}}</td>
+							<td>{{$v.NodeValue}}</td>
+							<td>{{$v.NodeDesc}}</td>
+							 
+							 
+							<td>
+							<a href="{{urlfor "NodeController.G_update" "id" $v.Id "node_name" $node_name "node_id" $node_id}}">编辑</a> | 
+							<a href="{{urlfor "NodeController.G_delete" "id" $v.Id "node_name" $node_name "node_id" $node_id}}" class="delete_confirm" onclick="if(confirm('确定删除?')==false)return false;">删除</a> | 
+							 
+							</td>
+						</tr>
+					{{end}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+     

@@ -1,0 +1,68 @@
+
+		<div class="row">
+			<div class="col-xs-12">
+			<a href="{{urlfor "DomainController.Group_add" "domain_id" .domain_id "domain_name" .domain_name}}" class="btn btn-sm btn-default"><i class="fa fa-user"></i> 新建</a>
+			</div>
+		</div>
+
+		<div class="space-4"></div>
+
+		<div class="row">
+      {{ $domain_id := .domain_id}}
+      {{ $domain_name := .domain_name}}
+      {{ $queuemode:= .queuemode}}
+      <input type="hidden"  name="domain_id" id="domain_id" value="{{.domain_id}}"/>
+      <input type="hidden"  name="domain_name" id="domain_name" value="{{.domain_name}}"/>
+      
+			<div class="col-xs-12">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>名称</th>
+            <th>组号</th>
+						<th>当前分机</th>
+            <th>排队模式</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>   
+           		 
+			         		
+      {{range $k, $v := .list}}
+						<tr>
+							<td class="center">{{$v.Id}}</td>
+							<td>{{$v.Group_name}}</td>
+							<td>{{$v.Group_number}}</td> 
+              <td>{{$v.Current_ext_number}}</td>
+              <td>
+                 
+                   {{if eq 0 $v.Queue_mode}}
+                        顺序
+                   {{else if eq 1 $v.Queue_mode}}
+                        随机
+                  {{else if eq 2 $v.Queue_mode}}
+                        循环
+                  {{else if eq 3 $v.Queue_mode}}
+                        记忆顺序
+                  {{else if eq 4 $v.Queue_mode}}
+                       记忆随机
+                  {{else if eq 5 $v.Queue_mode}}
+                       记忆循环
+                  {{end}}
+                 
+              </td>
+              <td>
+  							<a href="{{urlfor "DomainController.Group_update" "id" $v.Id "domain_id" $domain_id "domain_name" $domain_name}}">编辑</a> | 
+  							<a href="{{urlfor "DomainController.Group_delete" "id" $v.Id "domain_id" $domain_id "domain_name" $domain_name}}" class="delete_confirm" onclick="if(confirm('确定删除?')==false)return false;">删除</a> | 	 
+                <a href="{{urlfor "DomainController.Group_ext_list" "id" $v.Id "group_name" $v.Group_name "domain_id" $domain_id "domain_name" $domain_name}}">分机明细</a>|
+                <a href="{{urlfor "DomainController.Black_list" "id" $v.Id "group_name" $v.Group_name "group_number" $v.Group_number "domain_id" $domain_id "domain_name" $domain_name}}">黑名单</a> |
+                <a href="{{urlfor "DomainController.Vip_list" "id" $v.Id "group_name" $v.Group_name "group_number" $v.Group_number "domain_id" $domain_id "domain_name" $domain_name}}">VIP名单</a>
+              </td>
+						</tr>
+					{{end}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+       

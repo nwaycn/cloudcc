@@ -1,0 +1,49 @@
+
+		<div class="row">
+			<div class="col-xs-12">
+			<a href="{{urlfor "PlanController.TimePlanAdd"  "node_id" .node_id "node_name" .node_name}}" class="btn btn-sm btn-default"><i class="fa fa-user"></i> 新建</a>
+			</div>
+		</div>
+
+		<div class="space-4"></div>
+
+		<div class="row">
+    
+     <div class="col-xs-12">
+         <tr>   <td class="space-4">节点名称：{{.node_name}} 工作时间列表 </td>   </tr>
+      </div>
+      {{$node_id := .node_id}}
+      {{$node_name := .node_name}}
+     
+			<div class="col-xs-12">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>名称</th>
+						<th>描述</th>		 		
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>   
+           		 
+			         		
+      {{range $k, $v := .list}}
+						<tr>
+							<td class="center">{{$v.Id}}</td>
+							<td>{{$v.PlanName}}</td>
+							<td>{{$v.PlanDesc}}</td>
+							 
+              <td>
+  							<a href="{{urlfor "PlanController.TimePlanUpdate" "id" $v.Id "node_id" $node_id "node_name" $node_name}}">编辑</a> | 
+  							<a href="{{urlfor "PlanController.TimePlanDelete" "id" $v.Id "node_id" $node_id "node_name" $node_name}}" class="delete_confirm" onclick="if(confirm('确定删除?')==false)return false;">删除</a> | 	 
+                <a href="{{urlfor "PlanController.TimePlanDetailList" "time_plan_id" $v.Id "time_plan_name" $v.PlanName "node_id" $node_id "node_name" $node_name}}">明细</a>
+             
+              </td>
+						</tr>
+					{{end}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+       

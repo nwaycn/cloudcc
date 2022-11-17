@@ -1,0 +1,30 @@
+
+		<div class="row">
+			<div class="col-xs-12">
+			<a href="{{urlfor "NodeController.List"  "node_id" .node_id "node_name" .node_name }}" class="btn btn-sm btn-default"><i class="fa fa-user"></i> 返回</a>
+			</div>
+		</div>
+
+		<div class="space-4"></div>
+
+		<div class="row">
+    
+      <div class="col-xs-12">
+         <tr>   <td class="space-4">节点名称：{{.node_name}} </td>   </tr>
+      </div>
+      {{$node_id := .node_id}}
+      {{$node_name := .node_name}}
+			<div style="white-space:pre">
+				  <tr>   <td class="space-4">Acl列表</td></br> 
+            <td style="width:100px;word-break:keep-all">{{.acl}} </td> </br>
+            <td><a href="{{urlfor "AclController.AclList"  "node_id" .node_id "node_name" .node_name }}" class="btn btn-sm btn-default"><i class="fa fa-user"></i>编辑</a></td></br>  
+          </tr>
+			    <tr>   
+            <td class="space-4">iptable列表(需要root权限)</td> </br>
+            <td style="width:100%;white-space:normal;word-wrap:break-word;word-break:break-all;">{{.iptable}} </td> </br>
+            <td><a href="{{urlfor "AclController.IptablesList"  "node_id" .node_id "node_name" .node_name }}" class="btn btn-sm btn-default"><i class="fa fa-user"></i>编辑</a></td></br>  
+          </tr>
+
+      </div>
+		</div>
+     

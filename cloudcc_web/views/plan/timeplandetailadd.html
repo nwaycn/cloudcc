@@ -1,0 +1,96 @@
+
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "PlanController.TimePlanDetailAdd"}}">
+       <input type="hidden"  name="node_id" id="node_id" value="{{.node_id}}"/>
+       <input type="hidden"  name="node_name" id="node_name" value="{{.node_name}}"/>
+       <input type="hidden"  name="time_plan_id" id="time_plan_id" value="{{.time_plan_id}}"/>
+       <input type="hidden"  name="time_plan_name" id="time_plan_name" value="{{.time_plan_name}}"/>
+       
+			 <div class="col-xs-12">
+         <tr> <td class="space-4"> 节点: {{.node_name}}</td> <td class="space-4">工作时间：{{.time_plan_name}} </td> <td class="space-4">新增工作时间</td> </tr>
+       </div>
+			
+       
+			
+			<div class="form-group">
+				<label for="Node_name" class="col-sm-2 control-label">工作时间明细明称</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="time_name" name="time_name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="send_mail" class="col-sm-2 control-label">是否为日常的时间</label>
+				<div class="col-sm-5">
+					<input name="is_usualy" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  checked="true"  value="1">
+					<span class="lbl">选中为通用的，主要是工作日的选择，如果不选，则是单独针对某个日期，填入日期</span>
+				</div>
+			</div>
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">上班日期</label>
+				<div class="col-sm-3">
+					<input   type="text" class="form-control" id="custom_day" name="custom_day" value="2022-01-01,2022-01-02">
+				</div>
+        <span class="lbl">节假日中需要上班的日期，即时生效，填入日期</span>
+			</div>
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">不上班日期</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="disable_days" name="disable_days" value="2022-01-01,2022-01-02">
+				</div>
+        <span class="lbl">工作日中需要放假或不上班的日期，即时生效，填入日期</span>
+			</div>
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">开始时间</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="start_time" name="start_time" value="08:00">
+				</div>
+			</div>
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">结束时间</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="stop_time" name="stop_time" value="16:30">
+				</div>
+			</div>
+
+      <div class="form-group">
+				<label for="send_mail" class="col-sm-2 control-label">工作日选择</label>
+				<div class="col-sm-5">
+					<input name="mon" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" checked="true" value="1">
+					<span class="lbl">周一</span>
+				</div>
+        <div class="col-sm-5">
+					<input name="tue" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  checked="true" value="1">
+					<span class="lbl">周二</span>
+				</div>
+        <div class="col-sm-5">
+					<input name="wed" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  checked="true" value="1">
+					<span class="lbl">周三</span>
+				</div>
+        <div class="col-sm-5">
+					<input name="thur" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" checked="true" value="1">
+					<span class="lbl">周四</span>
+				</div>
+        <div class="col-sm-5">
+					<input name="fri" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  checked="true" value="1">
+					<span class="lbl">周五</span>
+				</div>
+        <div class="col-sm-5">
+					<input name="sat" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" value="1">
+					<span class="lbl">周六</span>
+				</div>
+        <div class="col-sm-5">
+					<input name="sun" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" value="1">
+					<span class="lbl">周日</span>
+				</div>
+			</div>
+      
+       
+	 
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "PlanController.TimePlanDetailList" "node_id" .node_id "node_name" .node_name "time_plan_id" .time_plan_id "time_plan_name" .time_plan_name }}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

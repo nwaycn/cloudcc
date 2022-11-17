@@ -1,0 +1,154 @@
+
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "IvrController.Update"}}">
+			{{$node_id := .node_id}}
+      {{$node_name := .node_name}}
+      {{$ivr_name := .ivr_name}}
+      {{$ivr_id := .ivr_id}}
+      {{$ringlist := .ringlist}}
+      {{$id := .id}}
+      {{$data := .data}}
+      <input type="hidden"  name="node_id" id="node_id" value="{{.node_id}}"/>
+      <input type="hidden"  name="node_name" id="node_name" value="{{.node_name}}"/>
+      <input type="hidden"  name="ivr_id" id="ivr_id" value="{{.ivr_id}}"/>
+      <input type="hidden"  name="ivr_name" id="ivr_name" value="{{.ivr_name}}"/>
+      <input type="hidden"  name="id" id="id" value="{{.id}}"/>
+       
+       
+			<div class="form-group">
+				<label for="Node_name" class="col-sm-2 control-label">名称</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Ivr_menu_name" name="Ivr_menu_name" value="{{.data.Ivr_menu_name}}">
+				</div>
+         <span class="lbl">可含空格及中文字符等</span>
+			</div>
+			
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">短名称</label>
+				<div class="col-sm-3">
+					<input  required="required"  type="text" class="form-control" id="Ivr_menu_extension" name="Ivr_menu_extension"  value="{{.data.Ivr_menu_extension}}">
+				</div>
+        <span class="lbl">不可含空格及中文字符等</span>
+			</div>
+      
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">备注</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="Ivr_menu_description" name="Ivr_menu_description"  value="{{.data.Ivr_menu_description}}">
+				</div>
+        <span class="lbl"></span>
+			</div>
+      
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">确认键</label>
+				<div class="col-sm-3">
+					<input  required="required"  type="text" class="form-control" id="Ivr_menu_confirm_key" name="Ivr_menu_confirm_key"  value="{{.data.Ivr_menu_confirm_key}}">
+				</div>
+        <span class="lbl">仅*#两种符号</span>
+			</div>
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">超时时长</label>
+				<div class="col-sm-3">
+					<input  required="required"  type="text" class="form-control" id="Ivr_menu_timeout" name="Ivr_menu_timeout"  value="{{.data.Ivr_menu_timeout}}" >
+				</div>
+        <span class="lbl"></span>
+			</div>
+       <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">超时时长</label>
+				<div class="col-sm-3">
+					<input  required="required"  type="text" class="form-control" id="Ivr_menu_max_timeouts" name="Ivr_menu_max_timeouts" value="{{.data.Ivr_menu_max_timeouts}}" >
+				</div>
+        <span class="lbl"></span>
+			</div>
+      <div class="form-group">
+				<label for="send_mail" class="col-sm-2 control-label">启用</label>
+				<div class="col-sm-5">
+         {{if eq $data.Ivr_menu_enabled true}}
+					<input name="Ivr_menu_enabled" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  checked="true" value="1">
+          {{else}}
+          <input name="Ivr_menu_enabled" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  value="1">
+          {{end}}
+					<span class="lbl"></span>
+				</div>
+			</div>
+     
+              
+      <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">引导语</label>
+				<div class="col-sm-6">
+					<select name="Ivr_menu_greet_long_id">
+						<option value="no">请选择</option>
+						{{range  $r := $ringlist}}
+               {{if eq $r.Id $data.Ivr_menu_greet_long_id}}
+						       <option value="{{$r.Id}}" selected="selected">{{$r.Ring_name}}</option>
+                {{else}}
+                   <option value="{{$r.Id}}">{{$r.Ring_name}}</option>
+                {{end}}
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"> </div>
+			</div> 
+      
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">转接音</label>
+				<div class="col-sm-6">
+					<select name="Ivr_menu_greet_short_id">
+						<option value="no">请选择</option>
+						{{range  $r := $ringlist}}
+						   {{if eq $r.Id $data.Ivr_menu_greet_short_id}}
+						       <option value="{{$r.Id}}" selected="selected">{{$r.Ring_name}}</option>
+                {{else}}
+                   <option value="{{$r.Id}}">{{$r.Ring_name}}</option>
+                {{end}}
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"> </div>
+        
+			</div>
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">无效音</label>
+				<div class="col-sm-6">
+					<select name="Ivr_menu_invalid_sound_id">
+						<option value="no">请选择</option>
+						{{range  $r := $ringlist}}
+						    {{if eq $r.Id $data.Ivr_menu_invalid_sound_id}}
+						       <option value="{{$r.Id}}" selected="selected">{{$r.Ring_name}}</option>
+                {{else}}
+                   <option value="{{$r.Id}}">{{$r.Ring_name}}</option>
+                {{end}}
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"> </div>
+        
+			</div>
+			
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">退出音</label>
+				<div class="col-sm-6">
+					<select name="Ivr_menu_exit_sound_id">
+						<option value="no">请选择</option>
+						{{range  $r := $ringlist}}
+						    {{if eq $r.Id $data.Ivr_menu_exit_sound_id}}
+						       <option value="{{$r.Id}}" selected="selected">{{$r.Ring_name}}</option>
+                {{else}}
+                   <option value="{{$r.Id}}">{{$r.Ring_name}}</option>
+                {{end}}
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"> </div>
+        
+			</div>
+       
+	 
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "IvrController.List" "ivr_id" $ivr_id "ivr_name" $ivr_name "node_id" $node_id "node_name" $node_name}}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

@@ -1,0 +1,14 @@
+[Unit]
+Description=Nway cloud cc command service
+ 
+
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/cloudcc/nway_cmd_server
+ExecStart=/usr/bin/nohup /opt/cloudcc/nway_cmd_server/nway_cmd_svr &
+ExecStop=/usr/bin/killall nway_cmd_svr
+
+[Install]
+WantedBy=multi-user.target

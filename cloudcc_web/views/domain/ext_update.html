@@ -1,0 +1,79 @@
+
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "DomainController.Ext_update"}}">
+		  {{$domain_id := .domain_id}}
+      {{$domain_name := .domain_name}}
+      {{$data := .data}}
+      {{$id := .id}}
+      <input type="hidden"  name="domain_id" id="domain_id" value="{{.domain_id}}"/>
+      <input type="hidden"  name="domain_name" id="domain_name" value="{{.domain_name}}"/>
+      <input type="hidden"  name="id" id="id" value="{{.id}}"/>
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">名称</label>
+				<div class="col-sm-3">
+					<input  required="required"  type="text" class="form-control" id="Extension_name" name="Extension_name" value="{{$data.Extension_name}}">
+				</div>
+        <span class="lbl">不可含空格及中文字符等</span>
+			</div>
+       
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">码号</label>
+				<div class="col-sm-3">
+					<input  type="text" class="form-control" id="Extension_number" name="Extension_number" value="{{$data.Extension_number}}" >
+				</div>
+        <span class="lbl"> </span>
+			</div> 
+      
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">外呼号码</label>
+				<div class="col-sm-3">
+					<input  type="text" class="form-control" id="Callout_number" name="Callout_number" value="{{$data.Callout_number}}" >
+				</div>
+        <span class="lbl"> </span>
+			</div> 
+       <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">分机密码</label>
+				<div class="col-sm-3">
+					<input  type="text" class="form-control" id="Extension_pswd" name="Extension_pswd"  value="{{$data.Extension_pswd}}">
+				</div>
+        <span class="lbl"> </span>
+			</div> 
+		  <div class="form-group">
+				<label for="send_mail" class="col-sm-2 control-label">锁定</label>
+				<div class="col-sm-5">
+          {{if eq $data.Locked true}}
+					  <input name="Locked" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  checked="true" value="1">
+          {{else}}
+            <input name="Locked" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  value="1">
+          {{end}}
+					<span class="lbl"></span>
+				</div>
+			</div>    
+      <div class="form-group">
+				<label for="send_mail" class="col-sm-2 control-label">免打扰</label>
+				<div class="col-sm-5">
+          {{if eq $data.Dnd true}}
+					  <input name="Dnd" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  checked="true" value="1">
+          {{else}}
+            <input name="Dnd" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  value="1">
+          {{end}}
+					<span class="lbl"></span>
+				</div>
+			</div>    
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">无条件转移</label>
+				<div class="col-sm-3">
+					<input  type="text" class="form-control" id="Unconditional_forward" name="Unconditional_forward"  value="{{$data.Unconditional_forward}}">
+				</div>
+        <span class="lbl"> </span>
+			</div>  
+       
+	 
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "DomainController.Ext_list" "domain_id" $domain_id "domain_name" $domain_name}}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

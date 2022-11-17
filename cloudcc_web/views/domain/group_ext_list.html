@@ -1,0 +1,34 @@
+ 
+		<div class="space-4">动态多对多关系分组与分机</div>
+
+		<div class="row">
+      {{ $domain_id := .domain_id}}
+      {{ $domain_name := .domain_name}}
+      {{ $queuemode:= .queuemode}}
+      <input type="hidden"  name="domain_id" id="domain_id" value="{{.domain_id}}"/>
+      <input type="hidden"  name="domain_name" id="domain_name" value="{{.domain_name}}"/>
+      
+			<div class="col-xs-12">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>顺序</th> 
+						<th>分机号</th>
+             
+					</tr>
+					</thead>
+					<tbody>   
+           		 
+			         		
+      {{range $k, $v := .extlist}}
+						<tr>
+							<td class="center">{{$k}}</td>
+							<td>{{$v}}</td>
+							 
+						</tr>
+					{{end}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+       

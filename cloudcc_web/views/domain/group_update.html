@@ -1,0 +1,52 @@
+
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "DomainController.Group_update"}}">
+		  {{$domain_id := .domain_id}}
+      {{$domain_name := .domain_name}}
+      {{ $queuemode:= .queuemode}}
+      {{$data := .data}}
+      <input type="hidden"  name="domain_id" id="domain_id" value="{{.domain_id}}"/>
+      <input type="hidden"  name="domain_name" id="domain_name" value="{{.domain_name}}"/>
+      <input type="hidden"  name="id" id="id" value="{{.id}}"/>
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">名称</label>
+				<div class="col-sm-3">
+					<input  required="required"  type="text" class="form-control" id="Group_name" name="Group_name" value="{{.data.Group_name}}">
+				</div>
+        <span class="lbl">不可含空格及中文字符等</span>
+			</div>
+       
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">短号</label>
+				<div class="col-sm-3">
+					<input  type="text" class="form-control" id="Group_number" name="Group_number"  value="{{.data.Group_number}}">
+				</div>
+        <span class="lbl"> </span>
+			</div> 
+		      
+			 
+      <div class="form-group">
+				<label for="Node_name" class="col-sm-2 control-label">允许ip</label>
+				<div class="col-sm-3">
+					 <select name="Queue_mode">
+						<option value="-1">请选择</option>
+						{{range  $k,$v := .queuemode}}
+               {{if eq $k $data.Queue_mode}}
+						      <option value="{{$k}}" selected="true">{{$v}}</option>
+                {{else}}
+                   <option value="{{$k}}" >{{$v}}</option>
+                {{end}}
+						{{end}}
+					</select>
+				</div>
+			</div>
+			 
+	 
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "DomainController.Group_list" "domain_id" $domain_id "domain_name" $domain_name}}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

@@ -1,0 +1,14 @@
+
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "OptimizationController.List"}}">
+      {{$node_id := .node_id}}
+      {{$node_name := .node_name}} 
+      <input type="hidden"  name="node_id" id="node_id" value="{{.node_id}}"/>
+      <input type="hidden"  name="node_name" id="node_name" value="{{.node_name}}"/>
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>优化</button>
+				</div>
+			</div>
+		</form>

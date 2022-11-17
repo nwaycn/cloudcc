@@ -1,0 +1,55 @@
+
+		<div class="row">
+			<div class="col-xs-12">
+			<a href="{{urlfor "GatewayController.Add"  "node_id" .node_id "node_name" .node_name "profile_id" .profile_id "profile_name" .profile_name }}" class="btn btn-sm btn-default"><i class="fa fa-user"></i> 新建</a>
+			</div>
+		</div>
+
+		<div class="space-4"></div>
+
+		<div class="row">
+    
+     <div class="col-xs-12">
+         <tr>   <td class="space-4">节点名称：{{.node_name}} </td>   </tr>
+      </div>
+      {{$node_id := .node_id}}
+      {{$node_name := .node_name}}
+      {{$profile_id := .profile_id}}
+      {{$profile_name := .profile_name}}
+			<div class="col-xs-12">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>网关名称</th>
+						<th>网关描述</th>
+						<th>是否启用</th>
+						<th>最大并发</th> 		
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					 
+					{{range $k, $v := .list}}
+						<tr>
+							<td class="center">{{$v.Id}}</td>
+							<td>{{$v.Gateway_name}}</td>
+							<td>{{$v.Gateway_desc}}</td>
+							<td>{{$v.Enable}}</td>
+							<td>{{$v.Max_concurrent}}</td> 
+							<td>
+							<a href="{{urlfor "GatewayController.Update" "id" $v.Id "profile_id" $profile_id "profile_name" $profile_name "node_id" $node_id "node_name" $node_name}}">编辑</a> | 
+							<a href="{{urlfor "GatewayController.Delete" "id" $v.Id "profile_id" $profile_id "profile_name" $profile_name "node_id" $node_id "node_name" $node_name}}" class="delete_confirm" onclick="if(confirm('确定删除?')==false)return false;">删除</a> | 	 
+              <a href="{{urlfor "GatewayController.Detail_list" "gateway_id" $v.Id "gateway_name" $v.Gateway_name "profile_id" $profile_id "profile_name" $profile_name "node_id" $node_id "node_name" $node_name}}">明细</a>
+							
+              
+              </td>
+						</tr>
+					{{end}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+        <div class="row">
+			<div class="col-xs-12">{{str2html .pageBar}}</div>
+		</div>

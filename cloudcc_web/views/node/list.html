@@ -1,0 +1,97 @@
+
+		<div class="row">
+			<div class="col-xs-12">
+			<a href="{{urlfor "NodeController.Add"  }}" class="btn btn-sm btn-default"><i class="fa fa-user"></i> 新建</a>
+			</div>
+		</div>
+
+		<div class="space-4"></div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>节点名称</th>
+						<th>操作ip</th>
+						<th>操作端口</th>
+						<th>操作口令</th>
+            
+						 
+						<th>ESL Port</th>
+						<th>ESL 口令</th> 
+            
+            <th>外网IP</th>
+            <th>请求的url</th> 
+            <th>分机路由</th>
+            <th>外部路由</th>
+            <th>话单库</th>
+            <th>允许系统调用</th> 
+            <th>心跳端口</th> 
+            
+            <th>说明信息</th> 
+            
+            <th>启用</th> 
+						
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					 
+					{{range $k, $v := .list}}
+						<tr>
+							<td class="center"  width="2%">{{$v.Id}}</td>
+							<td width="4%">{{$v.Node_name}}</td>
+							<td width="5%">{{$v.Operate_ip}}</td>
+							<td width="3%">{{$v.Operate_port}}</td>
+							<td width="5%">{{$v.Operate_secret}}</td>
+							 
+							<td width="3%">{{$v.Fs_esl_port}}</td>
+							<td width="4%">{{$v.Fs_esl_secret}}</td>
+              <td width="5%">{{$v.External_ip}}</td>
+              <td width="8%">{{$v.Request_url}}<br/>
+                  <a href="{{urlfor "NodeController.Push_conf" "id" $v.Id "node_id" $v.Id "node_name" $v.Node_name}}">下传配置</a>
+              </td>
+              <td width="4%"> 
+                  <a href="{{urlfor "NodeController.Push_conf_default" "id" $v.Id "node_id" $v.Id "node_name" $v.Node_name}}">下传</a>
+              </td>
+              <td width="4%"> 
+                  <a href="{{urlfor "NodeController.Push_conf_public" "id" $v.Id "node_id" $v.Id "node_name" $v.Node_name}}">下传</a>
+              </td>
+              <td width="8%">{{$v.Cdr_dbstring}}<br/>
+                  <a href="{{urlfor "NodeController.Push_conf_cdr" "id" $v.Id "node_id" $v.Id "node_name" $v.Node_name}}">下传配置</a>
+              </td>
+              <td width="4%">{{$v.Alow_system_call}}</td>
+              <td width="4%">{{$v.Heartbeat_port}}</td>
+              <td width="8%">{{$v.Meminfo}}</td>
+              <td width="4%">{{$v.Enable}}</td>
+							 
+							<td width="10">
+  							<a href="{{urlfor "NodeController.Update" "id" $v.Id}}">编辑</a> <br/>
+  							<a href="{{urlfor "NodeController.Delete" "id" $v.Id}}" class="delete_confirm" onclick="if(confirm('确定删除?')==false)return false;">删除</a> <br/> 
+  							<a href="{{urlfor "NodeController.G_param_list" "node_id" $v.Id "node_name" $v.Node_name}}">全局参数 </a> <br/>
+                <a href="{{urlfor "NodeController.S_param_list" "node_id" $v.Id "node_name" $v.Node_name}}">SIP参数 </a> <br/>
+                <a href="{{urlfor "SipProfileController.List" "node_id" $v.Id "node_name" $v.Node_name}}">Profiles</a><br/>
+                <a href="{{urlfor "DialplanController.List" "node_id" $v.Id "node_name" $v.Node_name}}">路由配置</a><br/>
+                <a href="{{urlfor "IvrController.List" "ivr_id" 0 "ivr_name" "" "node_id" $v.Id "node_name" $v.Node_name}}">IVR管理</a><br/>
+                <a href="{{urlfor "NodeController.Status" "node_id" $v.Id "node_name" $v.Node_name}}">SIP状态</a>(可执行命令)<br/>
+                
+                <a href="{{urlfor "PlanController.TimePlanList" "node_id" $v.Id "node_name" $v.Node_name}}">工作时间</a><br/>
+                <a href="{{urlfor "PlanController.AreaPlanList" "node_id" $v.Id "node_name" $v.Node_name}}">来电区域</a><br/>
+                
+                <a href="{{urlfor "SoundController.List" "node_id" $v.Id "node_name" $v.Node_name}}">彩铃管理</a><br/>
+                <a href="{{urlfor "AclController.List" "node_id" $v.Id "node_name" $v.Node_name}}">安全管理</a><br/> 
+                <a href="{{urlfor "LogFileController.List" "node_id" $v.Id "node_name" $v.Node_name}}">日志管理</a><br/>
+                <a href="{{urlfor "OptimizationController.List" "node_id" $v.Id "node_name" $v.Node_name}}">常规优化及清理</a><br/> 
+                <a href="{{urlfor "ToolsController.List" "node_id" $v.Id "node_name" $v.Node_name}}">常用工具</a>(需有root权限)<br/> 
+							</td>
+						</tr>
+					{{end}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+        <div class="row">
+			<div class="col-xs-12">{{str2html .pageBar}}</div>
+		</div>

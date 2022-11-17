@@ -1,0 +1,65 @@
+
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "GatewayController.Detail_update"}}">
+			{{$node_id := .node_id}}
+      {{$node_name := .node_name}} 
+      {{$profile_id := .profile_id}}
+      {{$profile_name := .profile_name}} 
+      {{$gateway_id := .gateway_id}}
+      {{$gateway_name := .gateway_name}}
+      <input type="hidden"  name="node_id" id="node_id" value="{{.node_id}}"/>
+      <input type="hidden"  name="node_name" id="node_name" value="{{.node_name}}"/>
+      <input type="hidden"  name="profile_id" id="profile_id" value="{{.profile_id}}"/>
+      <input type="hidden"  name="profile_name" id="profile_name" value="{{.profile_name}}"/>
+       <input type="hidden"  name="gateway_id" id="gateway_id" value="{{.gateway_id}}"/>
+      <input type="hidden"  name="gateway_name" id="gateway_name" value="{{.gateway_name}}"/>
+			<div class="col-xs-12">
+         <tr>   <td class="space-4">节点名称：{{$node_name}}    Profile名称:{{.profile_name}}  - 网关名称: {{.gateway_name}}</td>   </tr>
+      </div>
+			<div class="form-group">
+				<label for="Node_name" class="col-sm-2 control-label">key</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Gateway_key" name="Gateway_key" value="{{.data.Gateway_key}}">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">value</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Gateway_value" name="Gateway_value"  value="{{.data.Gateway_value}}">
+				</div>
+			</div>
+      
+			<div class="form-group">
+				<label for="send_mail" class="col-sm-2 control-label">启用</label>
+				<div class="col-sm-5">
+         {{if eq .data.Enable true}}
+					<input name="Enable" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" value="1" checked="true">
+        {{else}}
+        	<input name="Enable" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox" value="1">
+        {{end}}
+					<span class="lbl"></span>
+				</div>
+			</div>
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">可选项</label>
+				<div class="col-sm-3">
+					<input  type="text" class="form-control" id="Gateway_value_option" name="Gateway_value_option" value="{{.data.Gateway_value_option}}" >
+				</div>
+			</div>
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">描述说明</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="Gateway_key_desc" name="Gateway_key_desc" value="{{.data.Gateway_key_desc}}">
+				</div>
+			</div>
+			 
+	 
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "GatewayController.Detail_list" "gateway_id" $gateway_id "gateway_name" $gateway_name "node_id" $node_id "node_name" $node_name  "profile_id" $profile_id "profile_name" $profile_name}}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

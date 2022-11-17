@@ -1,0 +1,37 @@
+
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "DomainController.Update"}}">
+		  <input type="hidden"  name="id" id="id" value="{{.id}}"/>
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">名称</label>
+				<div class="col-sm-3">
+					<input  required="required"  type="text" class="form-control" id="Domain_name" name="Domain_name" value="{{.data.Domain_name}}" >
+				</div>
+        <span class="lbl">不可含空格及中文字符等</span>
+			</div>
+       
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">描述</label>
+				<div class="col-sm-3">
+					<input  type="text" class="form-control" id="Domain_desc" name="Domain_desc"  value="{{.data.Domain_desc}}">
+				</div>
+        <span class="lbl">可有中文及明确描述</span>
+			</div> 
+		      
+			 
+      <div class="form-group">
+				<label for="Node_name" class="col-sm-2 control-label">允许ip</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Allow_ip" name="Allow_ip"  value="{{.data.Allow_ip}}">
+				</div>
+			</div>
+			 
+	 
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "DomainController.List"}}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

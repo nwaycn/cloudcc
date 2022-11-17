@@ -1,0 +1,150 @@
+
+		 
+ 
+ 
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "NodeController.Update"}}">
+			 <input type="hidden"  name="id" id="id" value="{{.id}}"/>
+			
+			<div class="form-group">
+				<label for="Node_name" class="col-sm-2 control-label">节点名称</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Node_name" name="Node_name" value="{{.data.Node_name}}">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">操作ip</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Operate_ip" name="Operate_ip"  value="{{.data.Operate_ip}}">
+				</div>
+			</div>
+			 
+			<div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">操作端口</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Operate_port" name="Operate_port" value="{{.data.Operate_port}}">
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"></div>
+			</div>
+			  
+			 
+			<div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">操作口令</label>
+				<div class="col-sm-3">
+					<input required="required"  type="text" class="form-control" id="Operate_secret" name="Operate_secret" value="{{.data.Operate_secret}}">
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"></div>
+			</div>
+      
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">ESL IP</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Fs_esl_ip" name="Fs_esl_ip"  value="{{.data.Fs_esl_ip}}">
+				</div>
+			</div>
+			 
+			<div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">ESL Port</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Fs_esl_port" name="Fs_esl_port" value="{{.data.Fs_esl_port}}">
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"></div>
+			</div>
+			  
+			 
+			<div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">ESL 口令</label>
+				<div class="col-sm-3">
+					<input required="required"  type="text" class="form-control" id="Fs_esl_secret" name="Fs_esl_secret" value="{{.data.Fs_esl_secret}}">
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"></div>
+			</div>
+      
+      <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">外网IP</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="External_ip" name="External_ip" value="{{.data.External_ip}}">
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"></div>
+			</div>
+       <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">配置请求url</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Reqeuest_url" name="Request_url" value="{{.data.Request_url}}">
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline">http://127.0.0.1:3000/ 中"http://127.0.0.1:3000/属于启用nway_node_server的服务，(已废弃/10.0.0.8属于节点的配置的ip），直接由配置生成本地freeswitch的请求处理"</div>
+			</div>
+      <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">分机路由</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Extension_dialplan" name="Extension_dialplan" value="{{.data.Extension_dialplan}}">
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline">采用outbound实现的对分机对打，分机对外呼的路由</div>
+			</div>
+      
+      <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">外部路由</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Public_dialplan" name="Public_dialplan" value="{{.data.Public_dialplan}}">
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline">采用outbound实现的外线呼入，pbx转给线路的路由</div>
+			</div>
+      <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">话单库</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Cdr_dbstring" name="Cdr_dbstring" value="{{.data.Cdr_dbstring}}">
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline">统一存储话单的postgres数据库连接字符串,格式：host=127.0.0.1 user=postgres password=Nway2017 dbname=nwaycc connect_timeout=10</div>
+			
+			</div>
+      <div class="form-group">
+				<label for="send_mail" class="col-sm-2 control-label">系统调用</label>
+				<div class="col-sm-5">
+        {{if eq .data.Alow_system_call true}}
+					<input name="Alow_system_call" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  checked="true" value="1">
+				     {{else}}
+					<input name="Alow_system_call" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"    value="1">
+				{{end}}
+					 
+					<span class="lbl"></span>
+				</div>
+			</div>
+      
+       <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">心跳端口</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Heartbeat_port" name="Heartbeat_port" value="{{.data.Heartbeat_port}}">
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"></div>
+			</div>
+       <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">备注</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="Meminfo" name="Meminfo" value="{{.data.Meminfo}}">
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"></div>
+			</div>
+      
+			<div class="form-group">
+				<label for="send_mail" class="col-sm-2 control-label">启用</label>
+				<div class="col-sm-5">
+					 
+           {{if eq .data.Enable true}}
+					<input name="Enable" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"  checked="true" value="1">
+				     {{else}}
+					<input name="Enable" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"    value="1">
+				{{end}}
+					<span class="lbl"></span>
+				</div>
+			</div>
+			 
+	 
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "NodeController.List" }}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

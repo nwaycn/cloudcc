@@ -1,0 +1,36 @@
+
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "AclController.IptablesList"}}">
+			{{$node_id := .node_id}}
+      {{$node_name := .node_name}}  
+      <input type="hidden"  name="node_id" id="node_id" value="{{.node_id}}"/>
+      <input type="hidden"  name="node_name" id="node_name" value="{{.node_name}}"/>
+       
+			<div class="col-xs-12">
+         <tr>   <td class="space-4">节点名称：{{.node_name}} </td>   </tr>
+      </div>
+			<div class="form-group">
+				<label for="Node_name" class="col-sm-2 control-label">命令(需要root权限)</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="cmd" name="cmd"  >
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">现有规则(需要root权限)</label>
+				<div class="col-sm-3">
+          <textarea rows="30" cols="80">
+          {{.iptables}}
+          </textarea>
+					 
+				</div>
+			</div>
+	
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "AclController.List" "node_id" $node_id "node_name" $node_name }}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

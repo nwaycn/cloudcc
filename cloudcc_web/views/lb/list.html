@@ -1,0 +1,25 @@
+ 
+
+		<div class="space-4"></div>
+
+		<div class="row">
+    
+      <label for="pub_dir" class="col-sm-2 control-label">数据库字符串</label></br>
+			<div class="col-sm-6">
+				<input  required="required" type="text" class="form-control" id="DBString" name="DBString" value="host=127.0.0.1 user=postgres password=Nway2017 dbname=nwaycc connect_timeout=1"></br>
+			</div> 
+      <div class="help-block col-sm-8 col-sm-reset inline">统一存储话单的postgres数据库连接字符串,格式：host=127.0.0.1 user=postgres password=Nway2017 dbname=nwaycc connect_timeout=10</div>
+
+			<div class="col-xs-12">
+				  <tr>   <td class="space-4">一键生成OpenSIPS负载</td></br> 
+             
+            <td><a href="{{urlfor "LBController.OpenSIPS"}}" class="btn btn-sm btn-default"><i class="fa fa-user"></i>生成</a></td></br>  
+          </tr>
+			    <tr>   
+            <td class="space-4">一键生成Kamilio负载</td> </br>
+             
+            <td><a href="{{urlfor "LBController.Kamailio"}}" class="btn btn-sm btn-default"><i class="fa fa-user"></i>生成</a></td></br>  
+          </tr>
+
+      </div>
+		</div>

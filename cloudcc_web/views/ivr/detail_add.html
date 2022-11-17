@@ -1,0 +1,90 @@
+
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "IvrController.Detail_add"}}">
+			{{$node_id := .node_id}}
+      {{$node_name := .node_name}}
+      {{$ivr_name := .ivr_name}}
+      {{$ivr_id := .ivr_id}}
+      {{$ringlist := .ringlist}}
+      <input type="hidden"  name="node_id" id="node_id" value="{{.node_id}}"/>
+      <input type="hidden"  name="node_name" id="node_name" value="{{.node_name}}"/>
+      <input type="hidden"  name="ivr_id" id="ivr_id" value="{{.ivr_id}}"/>
+      <input type="hidden"  name="ivr_name" id="ivr_name" value="{{.ivr_name}}"/>
+       
+       
+			<div class="form-group">
+				<label for="Node_name" class="col-sm-2 control-label">按键</label>
+				<div class="col-sm-3">
+					<input  required="required" type="text" class="form-control" id="Ivr_menu_option_digits" name="Ivr_menu_option_digits">
+				</div>
+         <span class="lbl">只能为0-9及*#</span>
+			</div>
+			
+			 
+              
+      <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">操作</label>
+				<div class="col-sm-6">
+					<select name="Ivr_menu_option_action">
+						<option value="no">请选择</option>
+						{{range  $r := .oplist}}
+						<option value="{{$r.Name}}">{{$r.Name}}</option>
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline" style="white-space:pre">{{.option_desc}}</div>
+			</div> 
+      
+      <div class="form-group">
+				<label for="Node_name" class="col-sm-2 control-label">参数</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="Ivr_menu_option_param" name="Ivr_menu_option_param">
+				</div>
+         <span class="lbl">如果是menu-sub/menu-play-sound则可以不填 </span>
+			</div>
+      
+      <div class="form-group">
+				<label for="Node_name" class="col-sm-2 control-label">描述</label>
+				<div class="col-sm-3">
+					<input   type="text" class="form-control" id="Ivr_menu_option_description" name="Ivr_menu_option_description">
+				</div>
+         <span class="lbl"> </span>
+			</div>
+      <div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">参考语音</label>
+				<div class="col-sm-6">
+					<select name="Sound">
+						<option value="no">请选择</option>
+						{{range  $r := $ringlist}}
+						<option value="{{$r.Id}}">{{$r.Ring_name}}</option>
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"> </div>
+        
+			</div>
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">参考IVR</label>
+				<div class="col-sm-6">
+					<select name="IVRs">
+						<option value="no">请选择</option>
+						{{range  $r := .ivrlist}}
+						<option value="{{$r.Ivr_menu_extension}}">{{$r.Ivr_menu_name}}</option>
+						{{end}}
+					</select>
+				</div>
+				<div class="help-block col-sm-8 col-sm-reset inline"> </div>
+        
+			</div>
+			
+       
+       
+	 
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "IvrController.Detail_list" "ivr_id" $ivr_id "ivr_name" $ivr_name "node_id" $node_id "node_name" $node_name}}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

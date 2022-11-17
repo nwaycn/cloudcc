@@ -1,0 +1,55 @@
+
+		<div class="alert alert-warning alert-dismissible hide" role="alert"></div>
+		
+		<form class="form-horizontal ajax-form" method="post" action="{{urlfor "PlanController.AreaPlanUpdate"}}">
+			{{$node_id := .node_id}}
+      {{$node_name := .node_name}}
+      {{$id := .id}}
+      <input type="hidden"  name="node_id" id="node_id" value="{{.node_id}}"/>
+      <input type="hidden"  name="node_name" id="node_name" value="{{.node_name}}"/>
+      <input type="hidden"  name="id" id="id" value="{{.id}}"/> 
+      
+      <div class="col-xs-12">
+         <tr>   <td class="space-4">节点名称：{{$node_name}} </td>   </tr>
+      </div>
+      {{$ap := .ap}} 
+			 
+			
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">名称</label>
+				<div class="col-sm-3">
+					<input  required="required"  type="text" class="form-control" id="PlanName" name="PlanName"  value="{{$ap.PlanName}}">
+				</div>
+        <span class="lbl"> </span>
+			</div>
+      <div class="form-group" id="md-area">
+			    <label class="col-sm-2 control-label">区域策略</label>
+			    <div class="col-sm-3">
+					<input class="form-control" name="areaInput" id="areaInput" value="{{$ap.DistrictNo}}" type="text" placeholder="请设置你的路由区域1">
+				</div>
+				<button type="button" class="btn btn-info" id="selectArea" onclick="getCityList(this)"><i class="fa fa-cog"></i>设置区域</button>
+			    <div class="area-list">
+			      <div id="check-cancle">
+			        <input class="checkno" name="lihao" onclick="checkAll()" id="check-on" type="radio" checked="checked"><label  class="sradio" for="check-on"></label><span>所有区域&emsp;</span>
+			        <input class="checkno" name="lihao" onclick="cancleAll()" id="check-off" type="radio"><label class="sradio" for="check-off"></label><span>自定义区域策略&emsp;</span>
+			      </div>
+			      <div id="city-list" role="city-list"></div>
+			      <div class="check-ok">确定</div>
+			    </div>
+			</div> 
+			<div class="form-group">
+				<label for="ssh_user" class="col-sm-2 control-label">描述</label>
+				<div class="col-sm-3">
+					<input  type="text" class="form-control" id="PlanDesc" name="PlanDesc" value="{{$ap.PlanName}}">
+				</div>
+        <span class="lbl">可含空格及中文字符等</span>
+			</div> 
+		   
+	 
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "PlanController.AreaPlanList" "node_id" $node_id "node_name" $node_name}}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

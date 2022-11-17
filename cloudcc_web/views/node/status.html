@@ -1,0 +1,70 @@
+<div  ></div>
+		
+		<form   method="post" action="{{urlfor "NodeController.Status"}}">
+			
+      <div class="col-xs-12">
+         <tr> <td class="space-4"> id: {{.node_id}}</td> <td class="space-4">节点名称：{{.node_name}} </td> <td class="space-4">全局参数</td> </tr>
+      </div>
+			  <input type="hidden"  name="node_id" id="node_id" value="{{.node_id}}"/>
+        <input type="hidden"  name="node_name" id="node_name" value="{{.node_name}}"/>
+      <div class="form-group">
+				<label for="pub_dir" class="col-sm-2 control-label">自定义命令</label>
+				<div class="col-sm-3">
+					<input   type="text" class="form-control" id="cmd" name="cmd" ></br>
+				</div>
+				
+        
+			</div>
+      <div class="form-group">自定义查找对应的命令值，系统调用除外,系统调用需要允许节点系统调用</br></div>
+        <div class="form-group"></br>
+        命令有类似以下的若干：</br>
+          sofia external restart/rescan</br>
+          show modules</br>
+          show registrations</br>
+          uuid_kill uuid</br>
+          show calls</br>
+          show channels</br>
+          等无数种FreeSWITCH命令的用法
+        </div>
+      <div class="form-group">
+				<label for="status" class="col-sm-2 control-label">执行结果</label>
+				 
+			</div>
+      <div class="form-group">
+				 
+				<div  style="white-space:pre">
+         <br/> 
+					{{.cmd_result}}
+				</div>
+			</div>
+      <div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+				  <button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+				</div>
+			</div>
+			<div  >
+				<label  for="pub_dir" class="col-sm-2 control-label">Status</label>
+				 <br/>
+         <div  style="white-space:pre">
+					{{.status}}
+				</div>
+			</div>
+			 
+			<div  >
+				<label  for="pub_dir" class="col-sm-2 control-label">Sofia Status</label>
+				 <div  style="white-space:pre">
+
+          {{.sofia}}
+				</div>
+			</div>
+      
+			 
+			 
+	 
+			<div class="clearfix form-actions">
+				<div class="col-sm-offset-2 col-sm-10">
+				  <button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
+					<a href="{{urlfor "NodeController.List"  "node_id" .node_id "node_name" .node_name}}" class="btn btn-default"><i class="ace-icon fa fa-reply bigger-110"></i>返回</a>
+				</div>
+			</div>
+		</form>

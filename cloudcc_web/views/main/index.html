@@ -1,0 +1,157 @@
+
+
+<div class="hr"></div>
+
+
+
+
+
+<div class="row">
+ 	 
+	<div class="col-xs-12">
+		<a href="/assets/file/cloudcc_manual.pdf" class="btn btn-sm btn-default"><i class="fa fa-road"></i>简要说明书</a>
+	</div>
+	 
+	<div class="col-xs-6">
+		<div class="widget-box transparent">
+			<div class="widget-header widget-header-flat">
+				<h4 class="widget-title lighter">
+					<i class="ace-icon fa fa-rss orange">使用前说明</i>
+					 
+				</h4>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main ">
+					<i class="item-blue clearfix ui-sortable-handle">1. 此平台支持各版本的FreeSWITCH</i>	 
+					<i class="item-blue clearfix ui-sortable-handle">2. FreeSWITCH的路径建议为/usr/local/freeswitch</br>
+                                                 配置路径需为/usr/local/freeswitch/conf</i>	
+          <i class="item-blue clearfix ui-sortable-handle">3. 如果FreeSWITCH的路径不为/usr/local/freeswitch</br>
+                                                 那么启动时需要指定路径 freeswitch -conf /usr/local/freeswitch/conf</i>
+          <i class="item-blue clearfix ui-sortable-handle">4. 如果要记录通话记录则一定要使用mod_cdr_pg_csv</br>
+                                                 也就说是编译的时候一定要和Postgresql一起使用</i>
+          <i class="item-blue clearfix ui-sortable-handle">5. 此应用在早期开发时，曾开源最早的源代码，但由于很多第三方企业或个人当时就申请了著作权</br>
+          及商标等，故后续版本取消代码开源</i>
+      
+                                                		
+				</div><!-- /.widget-main -->
+			</div><!-- /.widget-body -->
+		</div>
+	</div>
+	<div class="col-xs-6">
+		<div class="widget-box  transparent">
+			<div class="widget-header widget-header-flat">
+				<h4 class="widget-title lighter">
+					<i class="ace-icon fa fa-rss orange">更多能力增强</i>
+					 
+				</h4>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main ">
+						<i class="item-blue clearfix ui-sortable-handle">1.呼叫中心中间件</i> 
+            <i class="item-blue clearfix ui-sortable-handle">2.智能客服、智能外呼</i> 
+            <i class="item-blue clearfix ui-sortable-handle">3.视频客服、视频外呼、智能视频客服</i> 
+            <i class="item-blue clearfix ui-sortable-handle">4.指挥调度+对讲+调音台+视频</i>
+            <i class="item-blue clearfix ui-sortable-handle">5.门禁系统SDK</i> 
+            <i class="item-blue clearfix ui-sortable-handle">6.WebRTC网关</i>
+            <i class="item-blue clearfix ui-sortable-handle">7.呼叫系统实时质检及座席助手</i>
+            <i class="item-blue clearfix ui-sortable-handle">8.外呼回铃检测</i>
+            <i class="item-blue clearfix ui-sortable-handle">9.可靠性录音系统</i>
+            <i class="item-blue clearfix ui-sortable-handle">10.微信及其它协议的小程序语音客服</i>
+				</div><!-- /.widget-main -->
+			</div><!-- /.widget-body -->
+		</div>
+	</div>
+	<div class="col-xs-6">
+		<div class="widget-box  transparent">
+			<div class="widget-header widget-header-flat">
+				<h4 class="widget-title lighter">
+					<i class="ace-icon fa fa-rss orange">使用要求</i>
+					 
+				</h4>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main ">
+				  <i class="item-blue clearfix ui-sortable-handle">1.产品主体部分开发分为三层：Web层、RPC服务、注册服务</i> 
+          <i class="item-blue clearfix ui-sortable-handle">2.数据库使用Postgresql 9.x以及后续版本</i> 
+          <i class="item-blue clearfix ui-sortable-handle">3.需要导入一个总的cloudcc_web的库，以及每个节点有一个cloudcc的库</i>
+          <i class="item-blue clearfix ui-sortable-handle">4.如果能看到此页面，代表web服务已启动，且数据库是正常的</i> 
+          <i class="item-blue clearfix ui-sortable-handle">5.Web页面是同各节点的nway_cmd_server通信，同时由cloudcc_server提供注册服务</i> 
+					<i class="item-blue clearfix ui-sortable-handle">6.Web的数据库配置是在/opt/cloudcc/cloudcc_web/conf/app.conf</i>	
+          <i class="item-blue clearfix ui-sortable-handle">7.注册服务的数据库配置是在/opt/cloudcc/cloudcc_server/cloudcc.conf</i>
+          <i class="item-blue clearfix ui-sortable-handle">8.RPC服务的数据库配置是在/opt/cloudcc/nway_cmd_server/cmd_server.conf</i>	
+				</div><!-- /.widget-main -->
+			</div><!-- /.widget-body -->
+		</div>
+	</div>
+	
+	<div class="col-xs-6">
+		<div class="widget-box  transparent">
+			<div class="widget-header widget-header-flat">
+				<h4 class="widget-title lighter">
+					<i class="ace-icon fa fa-rss orange">许可</i>
+					 
+				</h4>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main ">
+						<i class="item-blue clearfix ui-sortable-handle">1.本应用允许个人或企业自用或销售，但和我公司无关</i> 
+            <i class="item-blue clearfix ui-sortable-handle">2.由于是免费版本，本软件概不免费技术支持</i> 
+            <i class="item-blue clearfix ui-sortable-handle">3.任何企业不得未经授权使用本软件申请著作权等</i> 
+            
+				</div><!-- /.widget-main -->
+			</div><!-- /.widget-body -->
+		</div>
+	</div>
+	
+	
+	
+	<div class="col-xs-6">
+		<div class="widget-box  transparent">
+			<div class="widget-header widget-header-flat">
+				<h4 class="widget-title lighter">
+					<i class="ace-icon fa fa-info-circle orange">系统信息</i>
+					
+				</h4>
+			</div>
+
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+					<ul class="item-list">
+						<li class="item-orange">
+							程序版本：CloudCC v{{.version}}
+						</li>
+
+						<li class="item-red clearfix">
+							主机名称：{{.hostname}}
+						</li>
+
+						<li class="item-default clearfix ui-sortable-handle">
+							数据库版本：Postgresql {{.dbVerson}}
+						</li>
+
+						<li class="item-blue clearfix ui-sortable-handle">
+							运行环境：{{.os}} ({{.arch}}), CPU Num: {{.cpuNum}}, {{.gover}}, goroutine: {{.goroutineNum}}
+						</li>
+
+						<li class="item-grey clearfix ui-sortable-handle">
+							数据目录：{{.dataDir}}
+						</li>
+
+						<li class="item-green clearfix ui-sortable-handle">
+							启动时间：{{.uptime}}
+						</li>
+
+						<li class="item-pink clearfix ui-sortable-handle">
+							
+						</li>
+					</ul>
+				</div><!-- /.widget-main -->
+			</div><!-- /.widget-body -->
+		</div>
+	</div>
+	
+</div>

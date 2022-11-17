@@ -1,0 +1,53 @@
+
+		<div class="row">
+			<div class="col-xs-12">
+			<a href="{{urlfor "DomainController.Ext_add" "domain_id" .domain_id "domain_name" .domain_name}}" class="btn btn-sm btn-default"><i class="fa fa-user"></i> 新建</a>
+			</div>
+		</div>
+
+		<div class="space-4"></div>
+
+		<div class="row">
+      {{ $domain_id := .domain_id}}
+      {{ $domain_name := .domain_name}}
+      <input type="hidden"  name="domain_id" id="domain_id" value="{{.domain_id}}"/>
+      <input type="hidden"  name="domain_name" id="domain_name" value="{{.domain_name}}"/>
+      
+			<div class="col-xs-12">
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>ID</th>
+						<th>名称</th>
+						<th>码号</th>            
+            <th>外呼号码</th>					 		
+						<th>分机密码</th>
+            <th>锁定</th>
+            <th>免打扰</th>
+            <th>无条件转移</th>
+            <th>操作</th>
+					</tr>
+					</thead>
+					<tbody>   		         		
+      {{range $k, $v := .list}}
+						<tr>
+							<td class="center">{{$v.Id}}</td>
+							<td>{{$v.Extension_name}}</td>
+							<td>{{$v.Extension_number}}</td>
+							<td>{{$v.Callout_number}}</td> 
+              <td>{{$v.Extension_pswd}}</td>
+							<td>{{$v.Locked}}</td> 
+              <td>{{$v.Dnd}}</td> 
+              <td>{{$v.Unconditional_forward}}</td> 
+              <td>
+  							<a href="{{urlfor "DomainController.Ext_update" "id" $v.Id "domain_id" $domain_id "domain_name" $domain_name}}">编辑</a> | 
+  							<a href="{{urlfor "DomainController.Ext_delete" "id" $v.Id "domain_id" $domain_id "domain_name" $domain_name}}" class="delete_confirm" onclick="if(confirm('确定删除?')==false)return false;">删除</a> | 	 
+                
+              </td>
+						</tr>
+					{{end}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+       

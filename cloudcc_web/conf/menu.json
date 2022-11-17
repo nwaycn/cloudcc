@@ -1,0 +1,67 @@
+[
+	{
+		"name": "节点管理",
+		"icon": "fa-cloud-upload",
+		"route": "#",
+		"submenu": [
+			
+			{
+				"name": "节点列表",
+				"route": "node.list",
+				"action": "NodeController.List"
+			}
+		]
+	},
+	{
+		"name": "Domain管理",
+		"icon": "fa-cloud-upload",
+		"route": "#",
+		"submenu": [
+			
+			{
+				"name": "Domain管理",
+				"route": "Domain.list",
+				"action": "DomainController.List"
+			}
+		]
+	},
+	{
+		"name": "话单管理",
+		"icon": "fa-cloud-upload",
+		"route": "#",
+		"submenu": [
+			
+			{
+				"name": "通话清单",
+				"route": "cdr.list",
+				"action": "CdrController.List"
+			}
+		]
+	},
+	{
+		"name": "负载管理",
+		"icon": "fa-cloud-upload",
+		"route": "#",
+		"submenu": [
+			
+			{
+				"name": "负载管理",
+				"route": "lb.list",
+				"action": "LBController.List"
+			}
+		]
+	},
+	{
+		"name": "系统管理",
+		"icon": "fa-cog",
+		"route": "#",
+		"submenu": [
+			
+			{
+				"name": "基础配置",
+				"route": "baseconfig.list",
+				"action": "BaseconfigController.List"
+			}  
+		]
+	}
+]

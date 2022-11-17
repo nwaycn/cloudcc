@@ -1,0 +1,13 @@
+[Unit]
+Description=Nway cloud cc web service
+ 
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/cloudcc/cloudcc_web
+ExecStart=/usr/bin/nohup /opt/cloudcc/cloudcc_web/cloudcc_web &
+ExecStop=/usr/bin/killall cloudcc_web
+
+[Install]
+WantedBy=multi-user.target
