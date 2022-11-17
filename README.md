@@ -1,5 +1,7 @@
 CloudCC的简要使用说明
 
+ 这个应用的主旨是协助大量的使用FreeSWITCH以及OpenSIPS和Kamailio的用户，能通过web去管理和控制这些相关的应用，当然这个版本在用户体验方面不是太成熟，如果有什么意见请发邮件：lihao@nway.com.cn
+
 1. 在centos7+系统中
 
 ```
